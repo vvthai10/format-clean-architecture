@@ -1,33 +1,34 @@
 ### format-clean-architecture
 
 - Cấu trúc thư mục:
-src
-	|api
-	|	middleware: chứa các file xử lý trung gian
-	|	presenter: chứa các cấu trúc json sẽ dùng để trả về cho người dùng
-	|	router: chứa các cấu hình để truy vấn, có thể sử dụng nhiều package khác nhau ở đây: gin, echo, ...
-	|cmd
-	|	chứa file main
-	|config
-	|	chứa các file chứa các tham số cấu hình hệ thống
-	|controller
-	|	chứa các file controller 
-	|entity
-	|
-	|repository
-	|	|mysql
-	|	|postgres
-	|		db.go: chứa các hàm khởi tạo kết nối, hủy kết nối với DB
-	|		<entity>.go: các hàm tương tác với từng thực thể trong DB
-	|		store.go: các hàm thực hiện tương tác qua lại giữa các thực thể ?????
-	|service
-		|interface
-		|	|repository
-		|		|.go
-		|	|usecase
-		|		|.go
-		<entity_folder>
-			service.go
+```bash
+├── api
+│   ├── middleware
+│   ├── presenter
+│   ├── router
+│   │   ├── router.go
+│   │   ├── gin.go
+├── cmd
+│   ├── main.go
+├── config
+│   ├── config.go
+├── controller
+│   ├── <entity>.go
+├── entity
+│   ├── <entity>.go
+├── repository
+│   ├── mysql
+│   ├── postgres
+│   │   ├── db.go
+│   │   ├── store.go: các hàm thực hiện tương tác qua lại giữa các table
+│   │   ├── <entity>.go
+├── service
+│   ├── interface
+│   │   ├── repository
+│   │   ├── usecase
+│   └── <entity_folder>
+│   		└── service.go
+```
 		
 - Các nội dung được yêu cầu hôm trước:
 	Yêu cầu 1: api: có thể có tạo nhiều version or dùng các framework khác nhau
@@ -47,8 +48,7 @@ src
 	Việc chia version như anh bảo hôm bữa thì sẽ đổi framwork thì e thấy việc thiết kế router như hiện tại thì vẫn ỏn
 	Còn với việc update các luồng xử lý bên ngoài thì có thể tạo các folder version trong folder controller,...
 	
-THẮC MẮC: việc e sử dụng file store.go trong folder repository để khai báo các hàm tương tác qua lại các table
-em không chắc là nó có ổn trong việc rõ ràng không ạ
+THẮC MẮC: việc e sử dụng file store.go trong folder repository để khai báo các hàm tương tác qua lại các table có hợp lý không ạ.
 
 	
 	
